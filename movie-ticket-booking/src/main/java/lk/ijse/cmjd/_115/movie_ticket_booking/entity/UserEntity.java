@@ -11,13 +11,11 @@ import lk.ijse.cmjd._115.movie_ticket_booking.dto.enums.Role;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
-
 public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long id;
 
     @Column(nullable = false)
     private String name;
@@ -25,11 +23,13 @@ public class UserEntity {
     @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(name = "phone")
+    private String phone;
+
     @Column(nullable = false)
     private String password;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
-
 }

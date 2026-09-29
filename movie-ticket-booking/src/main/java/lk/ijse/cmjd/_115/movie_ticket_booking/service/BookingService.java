@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface BookingService {
     BookingDTO createBooking(BookingDTO bookingDTO);
+    BookingDTO updateBooking(Long id, BookingDTO bookingDTO);
     BookingDTO getBookingById(Long id);
     List<BookingDTO> getAllBookings();
     List<BookingDTO> getBookingsByUserId(Long userId);

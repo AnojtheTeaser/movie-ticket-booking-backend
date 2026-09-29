@@ -18,7 +18,7 @@ public class BookingEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bookingId;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -40,7 +40,7 @@ public class BookingEntity {
     private Double totalAmount;
 
     @Column(nullable = false)
-    private LocalDateTime bookingDate;
+    private LocalDateTime bookingTime;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

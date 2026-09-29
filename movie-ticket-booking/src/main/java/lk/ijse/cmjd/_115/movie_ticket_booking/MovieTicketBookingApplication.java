@@ -1,7 +1,9 @@
 package lk.ijse.cmjd._115.movie_ticket_booking;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class MovieTicketBookingApplication {
@@ -10,5 +12,8 @@ public class MovieTicketBookingApplication {
 		SpringApplication.run(MovieTicketBookingApplication.class, args);
 	}
 
-
+	@Bean
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
+	}
 }

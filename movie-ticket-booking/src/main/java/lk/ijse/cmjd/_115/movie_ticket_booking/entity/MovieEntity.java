@@ -24,11 +24,13 @@ public class MovieEntity {
 
     @Column(length = 1000)
     private String description;
-
     private Integer duration;
     private String language;
     private String genre;
     private LocalDate releaseDate;
+
+    @Column(name = "poster_url")
+    private String posterUrl;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

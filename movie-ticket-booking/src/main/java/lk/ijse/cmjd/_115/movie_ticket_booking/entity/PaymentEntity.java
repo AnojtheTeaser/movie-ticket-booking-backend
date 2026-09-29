@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lk.ijse.cmjd._115.movie_ticket_booking.dto.enums.PaymentMethod;
 import lk.ijse.cmjd._115.movie_ticket_booking.dto.enums.PaymentStatus;
 
 import java.time.LocalDateTime;
@@ -17,7 +18,7 @@ public class PaymentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long paymentId;
+    private Long id;
 
     @OneToOne
     @JoinColumn(name = "booking_id", nullable = false)
@@ -27,9 +28,11 @@ public class PaymentEntity {
     private Double amount;
 
     @Column(nullable = false)
-    private LocalDateTime paymentDate;
+    private LocalDateTime transactionTime;
 
-    private String paymentMethod;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private PaymentMethod paymentMethod;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

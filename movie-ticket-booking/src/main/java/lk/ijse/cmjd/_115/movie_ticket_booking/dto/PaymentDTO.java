@@ -12,10 +12,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PaymentDTO {
-    private Long paymentId;
+    private Long id;
     private Long bookingId;
     private Double amount;
     private PaymentMethod paymentMethod;
-    private PaymentStatus paymentStatus;
+    private PaymentStatus status;
     private LocalDateTime transactionTime;
 }

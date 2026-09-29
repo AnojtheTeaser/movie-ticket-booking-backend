@@ -15,10 +15,10 @@ public class TheatreEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long theatreId;
+    private Long id;
 
-    @Column(nullable = false)
-    private String theatreName;
+    @Column(name = "theatre_name", nullable = false)
+    private String name;
 
     @Column(nullable = false)
     private String location;

@@ -1,5 +1,6 @@
 package lk.ijse.cmjd._115.movie_ticket_booking.dto;
 
+import lk.ijse.cmjd._115.movie_ticket_booking.dto.enums.MovieStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,4 +19,5 @@ public class MovieDTO {
     private LocalDate releaseDate;
     private String description;
     private String posterUrl;
+    private MovieStatus status;
 }
