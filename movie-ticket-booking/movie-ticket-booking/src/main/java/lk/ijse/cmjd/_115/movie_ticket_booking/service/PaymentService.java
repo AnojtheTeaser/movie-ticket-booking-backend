@@ -9,4 +9,7 @@ public interface PaymentService {
     PaymentDTO getPaymentById(Long id);
     PaymentDTO getPaymentByBookingId(Long bookingId);
     List<PaymentDTO> getAllPayments();
+
+    PaymentDTO updatePayment(Long id, PaymentDTO paymentDTO);
+    PaymentDTO cancelPayment(Long id);
 }

@@ -76,4 +76,46 @@ public class PaymentServiceIMPL implements PaymentService {
             return dto;
         }).collect(Collectors.toList());
     }
+
+    @Override
+    public PaymentDTO updatePayment(Long id, PaymentDTO paymentDTO) {
+        PaymentEntity existingPayment = paymentDAO.findById(id)
+                .orElseThrow(() -> new RuntimeException("Payment not found with id: " + id));
+
+        if (paymentDTO.getBookingId() != null) {
+            BookingEntity bookingEntity = bookingDAO.findById(paymentDTO.getBookingId())
+                    .orElseThrow(() -> new RuntimeException("Booking not found with id: " + paymentDTO.getBookingId()));
+            existingPayment.setBooking(bookingEntity);
+        }
+
+        if (paymentDTO.getAmount() != null) {
+            existingPayment.setAmount(paymentDTO.getAmount());
+        }
+        if (paymentDTO.getPaymentMethod() != null) {
+            existingPayment.setPaymentMethod(paymentDTO.getPaymentMethod());
+        }
+        if (paymentDTO.getStatus() != null) {
+            existingPayment.setStatus(paymentDTO.getStatus());
+        }
+
+        PaymentEntity updatedPayment = paymentDAO.save(existingPayment);
+        PaymentDTO dto = modelMapper.map(updatedPayment, PaymentDTO.class);
+        dto.setBookingId(updatedPayment.getBooking().getId());
+        return dto;
+    }
+
+    @Override
+    public PaymentDTO cancelPayment(Long id) {
+        PaymentEntity paymentEntity = paymentDAO.findById(id)
+                .orElseThrow(() -> new RuntimeException("Payment not found with id: " + id));
+
+        paymentEntity.setStatus(PaymentStatus.FAILED);
+        PaymentEntity savedPayment = paymentDAO.save(paymentEntity);
+
+        PaymentDTO dto = modelMapper.map(savedPayment, PaymentDTO.class);
+        dto.setBookingId(savedPayment.getBooking().getId());
+        return dto;
+    }
+
+
 }
