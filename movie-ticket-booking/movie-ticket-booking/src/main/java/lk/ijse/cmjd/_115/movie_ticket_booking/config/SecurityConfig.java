@@ -54,11 +54,12 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        // React (3000/5173), Angular (4200), HTML/JS Live Server (5500) වලට අවසර දීම
+        // React (5173/5174), Angular (4200), HTML/JS Live Server (5500) වලට අවසර දීම
         configuration.setAllowedOrigins(List.of(
                 "http://localhost:3000",
                 "http://localhost:4200",
                 "http://localhost:5173",
+                "http://localhost:5174", // ✅ 5174 Port එක එකතු කළා
                 "http://127.0.0.1:5500",
                 "http://localhost:5500"
         ));
@@ -80,6 +81,7 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers("/api/auth/**").permitAll()
+                                .requestMatchers("/api/v1/movies/**").permitAll() // ✅ Movies Endpoints වලට Public Access දුන්නා
                                 .anyRequest().authenticated()
                 );
 
