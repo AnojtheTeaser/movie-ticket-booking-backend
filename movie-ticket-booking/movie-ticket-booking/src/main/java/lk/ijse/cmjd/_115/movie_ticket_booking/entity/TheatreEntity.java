@@ -28,4 +28,7 @@ public class TheatreEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TheatreStatus status;
+
+    @Column(name = "seat_map_url", length = 500)
+    private String seatMapUrl;
 }

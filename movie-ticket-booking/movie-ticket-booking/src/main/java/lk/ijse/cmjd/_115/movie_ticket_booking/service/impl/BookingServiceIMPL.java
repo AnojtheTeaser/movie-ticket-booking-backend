@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -103,6 +104,23 @@ public class BookingServiceIMPL implements BookingService {
     }
 
     @Override
+    public List<String> getBookedSeatsByShowId(Long showId) {
+        List<BookingEntity> bookings = bookingDAO.findByShowId(showId);
+        List<String> bookedSeats = new ArrayList<>();
+
+        for (BookingEntity booking : bookings) {
+            if (booking.getStatus() != BookingStatus.CANCELLED && booking.getSeatNumbers() != null) {
+                for (String seat : booking.getSeatNumbers()) {
+                    if (seat != null) {
+                        bookedSeats.add(seat.trim());
+                    }
+                }
+            }
+        }
+        return bookedSeats;
+    }
+
+    @Override
     public void cancelBooking(Long id) {
         BookingEntity entity = bookingDAO.findById(id)
                 .orElseThrow(() -> new RuntimeException("Booking not found with id: " + id));
@@ -110,7 +128,6 @@ public class BookingServiceIMPL implements BookingService {
         bookingDAO.save(entity);
     }
 
-    // Entity -> DTO Conversion Helper Method
     private BookingDTO mapToDTO(BookingEntity entity) {
         BookingDTO dto = modelMapper.map(entity, BookingDTO.class);
         if (entity.getUser() != null) {

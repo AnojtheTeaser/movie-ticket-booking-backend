@@ -14,4 +14,5 @@ public class TheatreDTO {
     private String location;
     private Integer capacity;
     private TheatreStatus status;
+    private String seatMapUrl;
 }

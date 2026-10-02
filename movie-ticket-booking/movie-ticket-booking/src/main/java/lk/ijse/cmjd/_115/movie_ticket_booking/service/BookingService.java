@@ -11,4 +11,5 @@ public interface BookingService {
     List<BookingDTO> getAllBookings();
     List<BookingDTO> getBookingsByUserId(Long userId);
     void cancelBooking(Long id);
+    List<String> getBookedSeatsByShowId(Long showId);
 }

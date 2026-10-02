@@ -36,6 +36,7 @@ public class TheatreServiceIMPL implements TheatreService {
         existingTheatre.setLocation(theatreDTO.getLocation());
         existingTheatre.setCapacity(theatreDTO.getCapacity());
         existingTheatre.setStatus(theatreDTO.getStatus());
+        existingTheatre.setSeatMapUrl(theatreDTO.getSeatMapUrl());
 
         TheatreEntity updatedTheatre = theatreDAO.save(existingTheatre);
         return modelMapper.map(updatedTheatre, TheatreDTO.class);

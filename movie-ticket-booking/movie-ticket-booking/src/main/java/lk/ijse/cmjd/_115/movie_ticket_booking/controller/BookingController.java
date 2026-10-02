@@ -52,4 +52,10 @@ public class BookingController {
         bookingService.cancelBooking(id);
         return ResponseEntity.noContent().build(); // Status Code: 204
     }
+
+    @GetMapping("/show/{showId}/seats")
+    public ResponseEntity<List<String>> getBookedSeatsByShowId(@PathVariable Long showId) {
+        List<String> bookedSeats = bookingService.getBookedSeatsByShowId(showId);
+        return ResponseEntity.ok(bookedSeats);
+    }
 }

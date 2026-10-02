@@ -14,5 +14,6 @@ public interface BookingDAO extends JpaRepository<BookingEntity, Long> {
 
     @Query("SELECT b FROM BookingEntity b WHERE b.user.id = :userId")
     List<BookingEntity> findBookingsByUserId(@Param("userId") Long userId);
+    List<BookingEntity> findByShowId(Long showId);
 
 }
