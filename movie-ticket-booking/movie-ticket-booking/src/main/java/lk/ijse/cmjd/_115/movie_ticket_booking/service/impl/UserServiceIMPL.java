@@ -40,7 +40,7 @@ public class UserServiceIMPL implements UserService {
         existingUser.setPhone(userDTO.getPhone());
         existingUser.setRole(userDTO.getRole());
 
-        // Password එක වෙනස් කිරීමට අවශ්‍ය නම් පමණක් update කිරීම
+        // Update password only if a new password is provided
         if (userDTO.getPassword() != null && !userDTO.getPassword().isEmpty()) {
             existingUser.setPassword(userDTO.getPassword());
         }

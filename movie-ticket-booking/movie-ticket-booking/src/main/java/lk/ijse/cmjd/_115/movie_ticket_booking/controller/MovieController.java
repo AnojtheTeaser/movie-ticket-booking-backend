@@ -20,7 +20,7 @@ public class MovieController {
 
     @PostMapping
     public ResponseEntity<MovieDTO> addMovie(@RequestBody MovieDTO movieDTO) {
-        MovieDTO savedMovie = movieService.saveMovie(movieDTO); // ✅ saveMovie ලෙස නිවැරදි කරන ලදී
+        MovieDTO savedMovie = movieService.saveMovie(movieDTO);
         return new ResponseEntity<>(savedMovie, HttpStatus.CREATED);
     }
 

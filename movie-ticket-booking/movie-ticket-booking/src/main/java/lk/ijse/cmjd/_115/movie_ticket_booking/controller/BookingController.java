@@ -50,7 +50,7 @@ public class BookingController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> cancelBooking(@PathVariable Long id) {
         bookingService.cancelBooking(id);
-        return ResponseEntity.noContent().build(); // Status Code: 204
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/show/{showId}/seats")

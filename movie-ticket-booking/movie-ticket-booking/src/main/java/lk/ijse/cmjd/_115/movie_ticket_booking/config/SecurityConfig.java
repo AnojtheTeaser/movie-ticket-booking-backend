@@ -49,7 +49,7 @@ public class SecurityConfig {
         return authConfig.getAuthenticationManager();
     }
 
-    // 🌐 Frontend එකට Backend එක එක්ක කතා කරන්න අවසර දෙන CORS Config එක
+    // Allows frontend access to backend API (CORS config)
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
@@ -59,7 +59,7 @@ public class SecurityConfig {
                 "http://localhost:3000",
                 "http://localhost:4200",
                 "http://localhost:5173",
-                "http://localhost:5174", // ✅ 5174 Port එක එකතු කළා
+                "http://localhost:5174",
                 "http://127.0.0.1:5500",
                 "http://localhost:5500"
         ));
@@ -75,13 +75,13 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                // CORS Config එක Security Chain එකට සම්බන්ධ කිරීම
+                // Connect CORS Config to Security Chain
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers("/api/auth/**").permitAll()
-                                .requestMatchers("/api/v1/movies/**").permitAll() // ✅ Movies Endpoints වලට Public Access දුන්නා
+                                .requestMatchers("/api/v1/movies/**").permitAll() // Give Public Access to Movies Endpoints
                                 .anyRequest().authenticated()
                 );
 

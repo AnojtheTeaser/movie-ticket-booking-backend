@@ -20,7 +20,7 @@ public class TheatreController {
 
     @PostMapping
     public ResponseEntity<TheatreDTO> addTheatre(@RequestBody TheatreDTO theatreDTO) {
-        TheatreDTO savedTheatre = theatreService.saveTheatre(theatreDTO); // ✅ saveTheatre ලෙස නිවැරදි කරන ලදී
+        TheatreDTO savedTheatre = theatreService.saveTheatre(theatreDTO);
         return new ResponseEntity<>(savedTheatre, HttpStatus.CREATED);
     }
 
