@@ -95,5 +95,5 @@ Authorization: Bearer <YOUR_JWT_TOKEN>
 ## 📐 Entity Relationship Diagram (ERD)
 
 <div align="center">
-  <img src="assets/erd-diagram.png" alt="Movie Booking System ERD" width="85%" style="background-color: white; padding: 10px; border-radius: 8px;" />
+  <img src="https://raw.githubusercontent.com/AnojtheTeaser/movie-ticket-booking-backend/main/ER%20Diagram/ERD.png" alt="Movie Booking ERD" width="90%" style="background-color: white; border-radius: 8px; padding: 10px;" />
 </div>
