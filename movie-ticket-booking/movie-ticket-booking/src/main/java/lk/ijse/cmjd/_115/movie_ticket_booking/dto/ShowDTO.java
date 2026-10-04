@@ -15,6 +15,8 @@ public class ShowDTO {
     private Long id;
     private Long movieId;
     private Long theatreId;
+    private Integer capacity;
+    private String seatMapUrl;
     private LocalDate showDate;
     private LocalTime showTime;
     private Double ticketPrice;

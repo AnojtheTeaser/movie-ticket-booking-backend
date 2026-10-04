@@ -109,9 +109,10 @@ public class BookingServiceIMPL implements BookingService {
         List<String> bookedSeats = new ArrayList<>();
 
         for (BookingEntity booking : bookings) {
+            // Check status is NOT CANCELLED
             if (booking.getStatus() != BookingStatus.CANCELLED && booking.getSeatNumbers() != null) {
                 for (String seat : booking.getSeatNumbers()) {
-                    if (seat != null) {
+                    if (seat != null && !seat.trim().isEmpty()) {
                         bookedSeats.add(seat.trim());
                     }
                 }

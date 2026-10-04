@@ -89,28 +89,36 @@ public class ShowServiceIMPL implements ShowService {
 
     @Override
     public List<ShowDTO> getAllShows() {
-        return showDAO.findAll().stream()
-                .map((ShowEntity show) -> mapToDTO(show))
+        return showDAO.findAllWithTheatreAndMovie().stream()
+                .map(this::mapToDTO)
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<ShowDTO> getShowsByMovieId(Long movieId) {
         return showDAO.findByMovieMovieId(movieId).stream()
-                .map((ShowEntity show) -> mapToDTO(show))
+                .map(this::mapToDTO)
                 .collect(Collectors.toList());
     }
 
     private ShowDTO mapToDTO(ShowEntity show) {
-        ShowDTO dto = modelMapper.map(show, ShowDTO.class);
+        ShowDTO dto = new ShowDTO();
+        dto.setId(show.getId());
+        dto.setShowDate(show.getShowDate());
+        dto.setShowTime(show.getShowTime());
+        dto.setTicketPrice(show.getTicketPrice());
+        dto.setStatus(show.getStatus());
+
         if (show.getMovie() != null) {
             dto.setMovieId(show.getMovie().getMovieId());
         }
+
         if (show.getTheatre() != null) {
-            // TheatreEntity එකේ ID එක theatreId ද නැත්නම් id ද කියලා බලන්න.
-            // TheatreEntity එකේ තියෙන්නෙ getId() නම් මෙතන show.getTheatre().getId() ලෙස වෙනස් කරන්න.
             dto.setTheatreId(show.getTheatre().getId());
+            dto.setCapacity(show.getTheatre().getCapacity());
+            dto.setSeatMapUrl(show.getTheatre().getSeatMapUrl());
         }
+
         return dto;
     }
 }
